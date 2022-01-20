@@ -4,7 +4,6 @@ import Header from '../components/Header.js'
 import axios from 'axios';
 import Image from 'next/image';
 
-
 function index() {
   const [query, setquery] = useState("")
   const [DataNeeded, setDataIWant] = useState(
@@ -528,23 +527,26 @@ function index() {
 
               <div className='bg-gray-900 min-h-screen max-h-auto text-white grid grid-cols-1 md:grid-cols-2 lg:grid-col-4 xl:grid-cols-5'>
                 {DataNeeded["hits"].map((datum) => (
-                  <div className='px-5 py-3 '>
-                  
-                    <div className='w-full'key={datum.id}>
-                      <Image
-                      className='rounded-t-lg object-cover'
-                        src={datum["largeImageURL"]}
-                        width= {700}
-                        height={400}
-                      />
-                      <div className='bg-gray-800 rounded-b-md -translate-y-2 shadow-md
-                       shadow-blue-600'>
-                        <h1 className='py-1 mx-3 capitalize'>
-                          {datum["tags"]}
-                        </h1>
+                  // <Link to=>
+                    <a className='px-5 py-3' href={`/ShowImage?userImageURL=${(datum["userImageURL"]).toString()}&user=${(datum["user"]).toString()}&image=${(datum["largeImageURL"]).toString()}&tags=${(datum["tags"]).toString()}`}>
+                    
+                      <div className='w-full'key={datum.id}>
+                        <Image
+                        className='rounded-t-lg object-cover'
+                          src={datum["largeImageURL"]}
+                          width= {700}
+                          height={400}
+                        />
+                        <div className='bg-gray-800 rounded-b-md -translate-y-2 shadow-md
+                        shadow-blue-600'>
+                          <h1 className='py-1 mx-3 capitalize'>
+                            {datum["tags"]}
+                          </h1>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    </a>
+                  // </Link>
+
                     
                 ))}
               </div>
